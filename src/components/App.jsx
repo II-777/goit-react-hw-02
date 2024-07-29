@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import Options from "./Options/Options";
 import Notification from "./Notification/Notification";
+import Stats from "./Stats/Stats";
 import './Options/Options.css';
 import './Notification/Notification.css';
+import './Stats/Stats.css';
 
 const App = () => {
   const [values, setValues] = useState(() => {
@@ -42,13 +44,12 @@ const App = () => {
       </div>
       <div className='stats'>
         {totalFeedback > 0 && (
-          <ul>
-            <li>good: {values.good}</li>
-            <li>neutral: {values.neutral}</li>
-            <li>bad: {values.bad}</li>
-            <li>total: {totalFeedback}</li>
-            <li>positive: {Math.round((values.good / totalFeedback) * 100)}%</li>
-          </ul>
+          <Stats
+            valuesGood={values.good}
+            valuesNeutral={values.neutral}
+            valuesBad={values.bad}
+            totalFeedback={totalFeedback}
+          />
         )}
       </div>
     </div>
