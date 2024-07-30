@@ -1,6 +1,6 @@
-import './Stats.css';
+import './Feedback.css';
 
-function Stats({ valuesGood, valuesNeutral, valuesBad, totalFeedback }) {
+function Feedback({ valuesGood, valuesNeutral, valuesBad, totalFeedback, totalPositive }) {
   return (
     <>
       <ul>
@@ -8,10 +8,10 @@ function Stats({ valuesGood, valuesNeutral, valuesBad, totalFeedback }) {
         <li>neutral: {valuesNeutral}</li>
         <li>bad: {valuesBad}</li>
         <li>total: {totalFeedback}</li>
-        <li>positive: {Math.round((valuesGood / totalFeedback) * 100)}%</li>
+        <li>positive: {totalPositive}</li>
       </ul>
     </>
   );
 }
 
-export default Stats;
+export default Feedback;

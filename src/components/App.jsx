@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import Description from "./Description/Description";
 import Options from "./Options/Options";
 import Notification from "./Notification/Notification";
-import Stats from "./Stats/Stats";
+import Feedback from "./Feedback/Feedback";
+import './Description/Description.css';
 import './Options/Options.css';
 import './Notification/Notification.css';
-import './Stats/Stats.css';
+import './Feedback/Feedback.css';
+
 
 const App = () => {
   const [values, setValues] = useState(() => {
@@ -23,12 +26,12 @@ const App = () => {
   };
 
   const totalFeedback = values.good + values.neutral + values.bad;
+  const totalPositive = totalFeedback ? `${Math.round((values.good / totalFeedback) * 100)}%` : `0%`;
 
   return (
     <div className='app'>
       <div className='description'>
-        <h1>Sip Happens Café</h1>
-        <p>Please leave your feedback about our service by selecting one of the options below.</p>
+        <Description />
       </div>
       <div className='options'>
         <Options
@@ -42,13 +45,14 @@ const App = () => {
           <Notification />
         )}
       </div>
-      <div className='stats'>
+      <div className='feedback'>
         {totalFeedback > 0 && (
-          <Stats
+          <Feedback
             valuesGood={values.good}
             valuesNeutral={values.neutral}
             valuesBad={values.bad}
             totalFeedback={totalFeedback}
+            totalPositive={totalPositive}
           />
         )}
       </div>
